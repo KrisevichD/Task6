@@ -1,4 +1,4 @@
-import Login from '#/layouts/login/login'
+import Login from '@/layouts/login/login'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/login')({
