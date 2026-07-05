@@ -1,9 +1,10 @@
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import Header from '@/components/common/Header';
 
-type RouterContext = {
-  auth: Boolean
+interface RouterContext {
+  authentication: any;
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
@@ -11,10 +12,10 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 })
 
 function RootComponent() {
-
   return (
     <>
-      <main>
+      <Header />
+      <main className='px-6'>
         <Outlet />
       </main>
       <TanStackDevtools

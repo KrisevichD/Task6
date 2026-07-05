@@ -10,8 +10,8 @@ export interface User {
     id: string;
     username: string;
     email: string;
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     gender: string;
     image: Url;
 }

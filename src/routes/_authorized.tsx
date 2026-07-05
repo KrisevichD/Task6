@@ -1,10 +1,12 @@
+
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_authorized')({
   beforeLoad: ({ context }) => {
-    const isAuthenticated = context.auth;
+    const isLoggedIn = true;
+    console.log(context.authentication)
 
-    if (!isAuthenticated) {
+    if (!isLoggedIn) {
       throw redirect({
         to: '/login',
         search: { redirect: window.location.pathname }, 
@@ -15,9 +17,9 @@ export const Route = createFileRoute('/_authorized')({
 })
 
 function RouteComponent() {
+  
   return (
     <div>
-      Hello "/_authorized"!
       <Outlet />
     </div>
   )

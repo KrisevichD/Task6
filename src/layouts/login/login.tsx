@@ -1,23 +1,13 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useLogin } from "@/hooks/useLogin";
-import { useState, type SyntheticEvent } from "react";
+import { useState } from "react";
 
 const Login = () => {
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const { mutate: auth, isPending, error } = useLogin();
 
-    const loginHandler = (e: SyntheticEvent): void => {
-        e.preventDefault();
-        auth({login, password})
-    }
-
-    if (error) return (
-        <div>
-            {error.message}
-        </div>
-    )
+    const loginHandler = () => {}
 
     return (
         <div>
@@ -37,8 +27,7 @@ const Login = () => {
                 />
                 <Button 
                     type="submit"
-                    onClick={(e) => loginHandler(e)}
-                    disabled={isPending}
+                    onClick={() => loginHandler()}
                 >
                     Log in
                 </Button>
