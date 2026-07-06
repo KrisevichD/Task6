@@ -2,12 +2,18 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { Icon } from "@iconify/react";
 import { useTheme } from "@/app/providers/ThemeProvider";
+import { useQuery } from "@tanstack/react-query";
+import { authQueryOptions } from "@/app/api/api";
 
 const Header = () => {
     const { theme, setTheme } = useTheme();
+    const { data: user } = useQuery(authQueryOptions);
+
     const isLightTheme = theme === 'light';
 
-    const themeHandler = () => setTheme(isLightTheme ? 'dark' : 'light')
+    console.log(theme)
+
+    const themeHandler = () => setTheme(isLightTheme ? 'dark' : 'light');
 
     return (
         <div className="h-16 w-screen bg-card px-3 py-6 flex">
@@ -29,7 +35,10 @@ const Header = () => {
                     <Icon icon={'streamline:interface-alert-alarm-bell-2-alert-bell-ring-notification-alarm'}/>
                 </Button>
                 <Button size={'icon-lg'}>
-                    <Icon icon={'clarity:avatar-line'} />
+                    {user 
+                        ? <img src={user.image} alt="" />
+                        : <Icon icon={'clarity:avatar-line'} />
+                    }
                 </Button>
             </div>
         </div>

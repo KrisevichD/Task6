@@ -1,25 +1,41 @@
-import { useAuth } from "@/hooks/useAuth";
-import { createContext, useEffect, type ReactNode } from "react";
+
+import type { ApiError } from "@/types/authentication";
+import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { redirect } from '@tanstack/react-router'
+import type { ReactNode } from "react";
 
 interface AuthProps {
     children: ReactNode
 }
 
-export const AuthContext = createContext<boolean | undefined>(undefined!);
+export const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+        onError: (error: ApiError) => {
+            const isUnauthorized = error?.statusCode === 401;
+
+            if (isUnauthorized) {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+
+                throw redirect({
+                    to: '/login',
+                    search: { redirect: window.location.pathname },
+                })
+            }
+        },
+    }),
+    defaultOptions: {
+        queries: {
+            retry: false
+        },
+    },
+});
 
 const AuthProvider = ({ children }: AuthProps) => {
-    const refreshToken = localStorage.getItem('refreshToken')
-    const { refreshSession, signIn } = useAuth();
-    const { data, mutate, isSuccess } = refreshSession(refreshToken);
-
-    useEffect(() => {
-        mutate();
-    }, [])
-
     return (
-        <AuthContext value={isSuccess}>
+        <QueryClientProvider client={queryClient}>
             {children}
-        </AuthContext>
+        </QueryClientProvider>
     );
 }
 

@@ -1,18 +1,16 @@
 
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import AuthProvider, { AuthContext } from './app/providers/AuthProvider';
 import { ThemeProvider } from './app/providers/ThemeProvider';
-import { useContext } from 'react';
+import AuthProvider, { queryClient as client} from './app/providers/AuthProvider';
 
-const queryClient = new QueryClient();
+const queryClient = client;
 
 const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   scrollRestoration: true,
-  context: { authentication: undefined! }
+  context: { queryClient }
 })
 
 declare module '@tanstack/react-router' {
@@ -21,22 +19,14 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const AppRouter = () => {
-    const authentication = useContext(AuthContext);
-
-    return <RouterProvider router={router} context={{ authentication }}/>
-}
-
 const App = () => {
-    return (
-        <QueryClientProvider client={queryClient}>
-            <AuthProvider>
-              <ThemeProvider defaultTheme="system" storageKey="ui-theme">
-                <AppRouter />
-              </ThemeProvider>
-            </AuthProvider>
-        </QueryClientProvider>
-    )
+  return (
+    <AuthProvider>
+      <ThemeProvider defaultTheme="system" storageKey="ui-theme">
+        <RouterProvider router={router} context={{ queryClient }} />
+      </ThemeProvider>
+    </AuthProvider>
+  )
 }
 
 export default App;

@@ -1,13 +1,18 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import useSignIn from "@/hooks/useSignIn";
+import { useState, type SyntheticEvent } from "react";
 
 const Login = () => {
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const { mutate } = useSignIn();
 
-    const loginHandler = () => {}
+    const loginHandler = (e: SyntheticEvent) => {
+        e.preventDefault();
+        mutate({login, password});
+    }
 
     return (
         <div>
@@ -27,7 +32,7 @@ const Login = () => {
                 />
                 <Button 
                     type="submit"
-                    onClick={() => loginHandler()}
+                    onClick={(e) => loginHandler(e)}
                 >
                     Log in
                 </Button>

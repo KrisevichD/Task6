@@ -1,6 +1,4 @@
 
-import type { Url } from "url";
-
 export interface LoginCredentials {
     login: string;
     password: string;
@@ -13,7 +11,7 @@ export interface User {
     firstname: string;
     lastname: string;
     gender: string;
-    image: Url;
+    image: string;
 }
 
 export interface SessionInfo {
