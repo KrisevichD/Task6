@@ -11,7 +11,9 @@ interface AuthProps {
 export const queryClient = new QueryClient({
     queryCache: new QueryCache({
         onError: (error: ApiError) => {
-            const isUnauthorized = error?.statusCode === 401;
+            const isUnauthorized = error?.status === 401;
+
+            console.log('redirect???', error.status);
 
             if (isUnauthorized) {
                 localStorage.removeItem('accessToken');

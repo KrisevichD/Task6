@@ -9,10 +9,12 @@ const Login = () => {
     const [password, setPassword] = useState<string>('')
     const { mutate } = useSignIn();
 
-    const loginHandler = (e: SyntheticEvent) => {
+    const loginHandler = async (e: SyntheticEvent) => {
         e.preventDefault();
         mutate({login, password});
     }
+
+    
 
     return (
         <div>

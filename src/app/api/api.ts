@@ -1,4 +1,4 @@
-import type { SessionInfo, User } from "@/types/authentication";
+import type { AuthResponse, LoginCredentials, SessionInfo, User } from "@/types/authentication";
 import { queryOptions } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -25,7 +25,22 @@ async function refresh() {
         'https://dummyjson.com/auth/refresh',
         {
             refreshToken: localStorage.getItem('refreshToken') ?? '',
-            expiresInMins: 30,
+            expiresInMins: 1,
+        }
+    )
+    return response.data;
+}
+
+export const signIn = async (credentials: LoginCredentials) => {
+    const response = await axios.post<AuthResponse>(
+        'https://dummyjson.com/auth/login',
+        {
+            username: credentials.login,
+            password: credentials.password,
+            expiresInMins: 1,
+        },
+        {
+            withCredentials: true,
         }
     )
     return response.data;

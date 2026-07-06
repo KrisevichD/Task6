@@ -13,9 +13,12 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 })
 
 function RootComponent() {
+  const context = Route.useRouteContext();
+  const client = context.queryClient;
+
   return (
     <>
-      <Header />
+      <Header queryClient={client}/>
       <main className='px-6'>
         <Outlet />
       </main>

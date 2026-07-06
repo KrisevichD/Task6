@@ -23,5 +23,6 @@ export interface AuthResponse extends User, SessionInfo {}
 
 export interface ApiError {
     message: string;
-    statusCode?: number;
+    status?: number;
+    code?: string;
 }

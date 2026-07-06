@@ -2,17 +2,22 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { Icon } from "@iconify/react";
 import { useTheme } from "@/app/providers/ThemeProvider";
-import { useQuery } from "@tanstack/react-query";
-import { authQueryOptions } from "@/app/api/api";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+import { authQueryOptions, refreshSessionQueryOptions } from "@/app/api/api";
 
-const Header = () => {
+interface HeaderProps {
+    queryClient: QueryClient
+}
+
+const Header = ({ queryClient }: HeaderProps) => {
     const { theme, setTheme } = useTheme();
-    const { data: user } = useQuery(authQueryOptions);
+    const hasToken = !!queryClient.getQueryData(['token'])
+    const { data: user, isFetching } = useQuery(authQueryOptions);
+    const uu = queryClient.ensureQueryData(refreshSessionQueryOptions);
+
+    console.log(hasToken, uu)
 
     const isLightTheme = theme === 'light';
-
-    console.log(theme)
-
     const themeHandler = () => setTheme(isLightTheme ? 'dark' : 'light');
 
     return (
@@ -35,8 +40,8 @@ const Header = () => {
                     <Icon icon={'streamline:interface-alert-alarm-bell-2-alert-bell-ring-notification-alarm'}/>
                 </Button>
                 <Button size={'icon-lg'}>
-                    {user 
-                        ? <img src={user.image} alt="" />
+                    {hasToken && !isFetching
+                        ? <img src={user?.image} alt="" />
                         : <Icon icon={'clarity:avatar-line'} />
                     }
                 </Button>

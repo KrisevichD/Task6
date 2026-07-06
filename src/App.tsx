@@ -3,6 +3,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 import { ThemeProvider } from './app/providers/ThemeProvider';
 import AuthProvider, { queryClient as client} from './app/providers/AuthProvider';
+import type { ApiError } from './types/authentication';
 
 const queryClient = client;
 
@@ -15,7 +16,8 @@ const router = createRouter({
 
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: typeof router,
+    defaultError: ApiError
   }
 }
 
