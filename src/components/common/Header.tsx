@@ -1,9 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
+import { Icon } from "@iconify/react";
+import { useTheme } from "@/app/providers/ThemeProvider";
 
 const Header = () => {
+    const { theme, setTheme } = useTheme();
+    const isLightTheme = theme === 'light';
+
+    const themeHandler = () => setTheme(isLightTheme ? 'dark' : 'light')
+
     return (
-        <div className="h-16 w-screen bg-white px-3 py-6 flex">
+        <div className="h-16 w-screen bg-card px-3 py-6 flex">
             <nav className="w-full flex gap-10.5 text-sm font-medium justify-center items-center">
                 <Link to={'/'}>Home</Link>
                 <Link to={'/dashboard'}>Tables</Link>
@@ -11,9 +18,19 @@ const Header = () => {
                 <Link to={'/'}>Documentation</Link>
             </nav>
             <div className="flex gap-3 items-center">
-                <Button variant={'theme'} size={'icon-md'}>M</Button>
-                <Button variant={'ghost'}>T</Button>
-                <Button size={'icon-lg'}>P</Button>
+                <Button variant={'theme'} size={'icon-md'} onClick={themeHandler}>
+                    {
+                        isLightTheme 
+                            ? <Icon icon={'entypo:light-up'} color="currentColor"/>
+                            : <Icon icon={'tabler:moon'} color="currentColor"/>
+                    }
+                </Button>
+                <Button variant={'ghost'} size={'icon-md'}>
+                    <Icon icon={'streamline:interface-alert-alarm-bell-2-alert-bell-ring-notification-alarm'}/>
+                </Button>
+                <Button size={'icon-lg'}>
+                    <Icon icon={'clarity:avatar-line'} />
+                </Button>
             </div>
         </div>
     );

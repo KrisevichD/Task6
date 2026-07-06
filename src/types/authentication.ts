@@ -16,12 +16,12 @@ export interface User {
     image: Url;
 }
 
-export interface Session {
+export interface SessionInfo {
     accessToken: string;
     refreshToken: string;
 }
 
-export interface AuthResponse extends User, Session {}
+export interface AuthResponse extends User, SessionInfo {}
 
 export interface ApiError {
     message: string;
