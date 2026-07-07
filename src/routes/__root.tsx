@@ -1,24 +1,41 @@
-import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-import Header from '@/components/common/Header';
+import { getAuthOptions, getRefreshOptions } from '@/app/api/auth';
+import Header from '@/components/common/header';
+import { TanStackDevtools } from '@tanstack/react-devtools';
 import type { QueryClient } from '@tanstack/react-query';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 
 interface RouterContext {
   queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
+  beforeLoad: async ({ context }) => {
+    const accessToken = await context.queryClient.fetchQuery(getRefreshOptions());
+
+    console.log('access', accessToken)
+
+    if (!accessToken) return {
+      accessToken: null,
+      isAuthenticated: false,
+      userData: null
+    }
+
+    const userData = await context.queryClient.fetchQuery(getAuthOptions(accessToken));
+
+    return {
+      accessToken: accessToken,
+      isAuthenticated: true,
+      userData: userData
+    };
+  },
   component: RootComponent,
 })
 
 function RootComponent() {
-  const context = Route.useRouteContext();
-  const client = context.queryClient;
-
   return (
     <>
-      <Header queryClient={client}/>
+      <Header />
       <main className='px-6'>
         <Outlet />
       </main>

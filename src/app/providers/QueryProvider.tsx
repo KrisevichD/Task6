@@ -4,16 +4,10 @@ import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-qu
 import { redirect } from '@tanstack/react-router'
 import type { ReactNode } from "react";
 
-interface AuthProps {
-    children: ReactNode
-}
-
 export const queryClient = new QueryClient({
     queryCache: new QueryCache({
         onError: (error: ApiError) => {
             const isUnauthorized = error?.status === 401;
-
-            console.log('redirect???', error.status);
 
             if (isUnauthorized) {
                 localStorage.removeItem('accessToken');
@@ -33,7 +27,11 @@ export const queryClient = new QueryClient({
     },
 });
 
-const AuthProvider = ({ children }: AuthProps) => {
+interface QueryProps {
+    children: ReactNode
+}
+
+const QueryProvider = ({ children }: QueryProps) => {
     return (
         <QueryClientProvider client={queryClient}>
             {children}
@@ -41,4 +39,4 @@ const AuthProvider = ({ children }: AuthProps) => {
     );
 }
 
-export default AuthProvider;
+export default QueryProvider;

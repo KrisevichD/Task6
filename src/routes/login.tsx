@@ -1,4 +1,4 @@
-import Login from '@/layouts/login/login'
+import Login from '@/layouts/login'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 

@@ -142,4 +142,8 @@
   h1 {
     @apply text-2xl font-semibold text-heading
   }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

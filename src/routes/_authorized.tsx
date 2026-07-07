@@ -1,15 +1,11 @@
 
-import { authQueryOptions } from '@/app/api/api'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_authorized')({
   beforeLoad: async ({ context }) => {
-    try {
-      const user = await context.queryClient.ensureQueryData(authQueryOptions)
-      
-      console.log(':::>', user);
-      return user;
-    } catch {
+    const isAuthenticated = context.isAuthenticated;
+
+    if (!isAuthenticated) {
       throw redirect({
         to: '/login',
         search: { redirect: window.location.pathname },
