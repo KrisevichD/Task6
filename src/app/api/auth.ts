@@ -1,8 +1,7 @@
 import type { AuthResponse, LoginCredentials, SessionInfo, User } from "@/types/authentication";
-import { queryOptions } from "@tanstack/react-query";
 import axios from "axios";
 
-async function getMe(token: string) {
+async function getMe(token: string): Promise<User> {
     const response = await axios.get<User>(
         'https://dummyjson.com/auth/me',
         {
@@ -14,7 +13,7 @@ async function getMe(token: string) {
     return response.data;
 }
 
-async function refresh() {
+async function refresh(): Promise<string | null> {
     const token = localStorage.getItem('refreshToken');
     console.log('token', token, ")")
 
@@ -31,7 +30,7 @@ async function refresh() {
     return response.data.accessToken;
 }
 
-async function signIn(credentials: LoginCredentials) {
+async function signIn(credentials: LoginCredentials): Promise<AuthResponse> {
     const response = await axios.post<AuthResponse>(
         'https://dummyjson.com/auth/login',
         {
@@ -47,25 +46,10 @@ async function signIn(credentials: LoginCredentials) {
 }
 
 const api = {
-    signIn
+    signIn,
+    refresh,
+    getMe
 }
 
 export default api;
 
-export const getAuthOptions = (token: string) => queryOptions({
-    queryKey: ['auth', 'user'],
-    queryFn: async () => getMe(token),
-    staleTime: 1000 * 60,
-    refetchOnWindowFocus: true,
-    retry: false,
-    enabled: !!token,
-})
-
-export const getRefreshOptions = () => queryOptions({
-    queryKey: ['auth', 'token'],
-    queryFn: async () => refresh(),
-    staleTime: 1000 * 60,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    retry: false,
-})

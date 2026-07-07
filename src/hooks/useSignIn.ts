@@ -4,21 +4,22 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 
 export default function useSignIn() {
-    const queryClient = useQueryClient()
-    const search = useSearch({ strict: false });
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const search = useSearch({ strict: false });
 
-    const { mutate: signIn, error, isPending } = useMutation({
+    const { mutate: signIn, error, isPending, isError } = useMutation({
         mutationFn: (credentials: LoginCredentials): Promise<AuthResponse> => api.signIn(credentials),
         onSuccess: (data) => {
             const userData: User = {
                 id: data.id,
                 username: data.username,
                 email: data.email,
-                firstname: data.firstname,
-                lastname: data.lastname,
+                firstName: data.firstName,
+                lastName: data.lastName,
                 gender: data.gender,
                 image: data.image,
+                role: data.role,
             }
 
             localStorage.setItem('refreshToken', data.refreshToken)
@@ -30,13 +31,15 @@ export default function useSignIn() {
             navigate({ to: redirectTo })
         },
         onError: (error) => {
-            console.log("!", error.message);
+            return 'Invalid data'
         },
         retry: false,
     })
+
     return {
         signIn,
         error,
-        isPending
+        isPending,
+        isError
     }
 }

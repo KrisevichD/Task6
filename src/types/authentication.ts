@@ -8,10 +8,11 @@ export interface User {
     id: string;
     username: string;
     email: string;
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     gender: string;
     image: string;
+    role: string;
 }
 
 export interface SessionInfo {
@@ -19,7 +20,7 @@ export interface SessionInfo {
     refreshToken: string;
 }
 
-export interface AuthResponse extends User, SessionInfo {}
+export interface AuthResponse extends User, SessionInfo { }
 
 export interface ApiError {
     message: string;

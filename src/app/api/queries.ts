@@ -1,0 +1,20 @@
+import { queryOptions } from "@tanstack/react-query";
+import api from "./auth";
+
+export const getAuthOptions = (token: string) => queryOptions({
+    queryKey: ['auth', 'user'],
+    queryFn: async () => api.getMe(token),
+    staleTime: 1000 * 60,
+    refetchOnWindowFocus: true,
+    retry: false,
+    enabled: !!token,
+})
+
+export const getRefreshOptions = () => queryOptions({
+    queryKey: ['auth', 'token'],
+    queryFn: async () => api.refresh(),
+    staleTime: 1000 * 60,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+})

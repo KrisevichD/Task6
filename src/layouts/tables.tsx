@@ -4,11 +4,11 @@ import Title from "@/components/common/Title";
 const Tables = () => {
     return (
         <div>
-            <Title 
+            <Title
                 title="List of medications in development"
                 subtitle="Brief summary of testing processes"
             />
-            
+
         </div>
     );
 }

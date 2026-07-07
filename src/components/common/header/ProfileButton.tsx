@@ -1,5 +1,5 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import useAuth from "@/hooks/useSignOut";
 import { Icon } from "@iconify/react";
 import { Link, useRouteContext } from "@tanstack/react-router";
@@ -8,7 +8,7 @@ import { Link, useRouteContext } from "@tanstack/react-router";
 const ProfileButton = () => {
     const context = useRouteContext({ from: '__root__' });
     const { signOut } = useAuth();
-    console.log(context)
+
     return (
         <>
             {
@@ -22,13 +22,12 @@ const ProfileButton = () => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
                             <DropdownMenuGroup>
-                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                <DropdownMenuItem>Profile</DropdownMenuItem>
-                                <DropdownMenuItem>Billing</DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link to={'/profile'}>Profile</Link>
+                                </DropdownMenuItem>
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
-                                <DropdownMenuItem>Team</DropdownMenuItem>
                                 <DropdownMenuItem variant="destructive" onClick={() => signOut()}>
                                     Log out
                                 </DropdownMenuItem>
@@ -36,10 +35,24 @@ const ProfileButton = () => {
                         </DropdownMenuContent>
                     </DropdownMenu >
                     :
-                    <Link to={'/login'} className={buttonVariants({ variant: 'icon', size: 'icon-lg' })}>
-                        <Icon icon={'clarity:avatar-line'} />
-                        <span className="sr-only">Login page</span>
-                    </Link>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant={'icon'} size={'icon-lg'}>
+                                <Icon icon={'clarity:avatar-line'} />
+                                <span className="sr-only">Login page</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem asChild>
+                                    <Link to={'/login'}>
+                                        Log in
+                                    </Link>
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu >
+
             }
         </>
     );

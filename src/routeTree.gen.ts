@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthorizedRouteImport } from './routes/_authorized'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthorizedTablesRouteImport } from './routes/_authorized/tables'
+import { Route as AuthorizedProfileRouteImport } from './routes/_authorized/profile'
 import { Route as AuthorizedDashboardRouteImport } from './routes/_authorized/dashboard'
 
 const LoginRoute = LoginRouteImport.update({
@@ -34,6 +35,11 @@ const AuthorizedTablesRoute = AuthorizedTablesRouteImport.update({
   path: '/tables',
   getParentRoute: () => AuthorizedRoute,
 } as any)
+const AuthorizedProfileRoute = AuthorizedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthorizedRoute,
+} as any)
 const AuthorizedDashboardRoute = AuthorizedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -44,12 +50,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/dashboard': typeof AuthorizedDashboardRoute
+  '/profile': typeof AuthorizedProfileRoute
   '/tables': typeof AuthorizedTablesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/dashboard': typeof AuthorizedDashboardRoute
+  '/profile': typeof AuthorizedProfileRoute
   '/tables': typeof AuthorizedTablesRoute
 }
 export interface FileRoutesById {
@@ -58,19 +66,21 @@ export interface FileRoutesById {
   '/_authorized': typeof AuthorizedRouteWithChildren
   '/login': typeof LoginRoute
   '/_authorized/dashboard': typeof AuthorizedDashboardRoute
+  '/_authorized/profile': typeof AuthorizedProfileRoute
   '/_authorized/tables': typeof AuthorizedTablesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/dashboard' | '/tables'
+  fullPaths: '/' | '/login' | '/dashboard' | '/profile' | '/tables'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/dashboard' | '/tables'
+  to: '/' | '/login' | '/dashboard' | '/profile' | '/tables'
   id:
     | '__root__'
     | '/'
     | '/_authorized'
     | '/login'
     | '/_authorized/dashboard'
+    | '/_authorized/profile'
     | '/_authorized/tables'
   fileRoutesById: FileRoutesById
 }
@@ -110,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthorizedTablesRouteImport
       parentRoute: typeof AuthorizedRoute
     }
+    '/_authorized/profile': {
+      id: '/_authorized/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthorizedProfileRouteImport
+      parentRoute: typeof AuthorizedRoute
+    }
     '/_authorized/dashboard': {
       id: '/_authorized/dashboard'
       path: '/dashboard'
@@ -122,11 +139,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthorizedRouteChildren {
   AuthorizedDashboardRoute: typeof AuthorizedDashboardRoute
+  AuthorizedProfileRoute: typeof AuthorizedProfileRoute
   AuthorizedTablesRoute: typeof AuthorizedTablesRoute
 }
 
 const AuthorizedRouteChildren: AuthorizedRouteChildren = {
   AuthorizedDashboardRoute: AuthorizedDashboardRoute,
+  AuthorizedProfileRoute: AuthorizedProfileRoute,
   AuthorizedTablesRoute: AuthorizedTablesRoute,
 }
 

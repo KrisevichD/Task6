@@ -1,4 +1,4 @@
-import { getAuthOptions, getRefreshOptions } from '@/app/api/auth';
+import { getAuthOptions, getRefreshOptions } from '@/app/api/queries';
 import Header from '@/components/common/header';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import type { QueryClient } from '@tanstack/react-query';
@@ -36,7 +36,7 @@ function RootComponent() {
   return (
     <>
       <Header />
-      <main className='px-6'>
+      <main className='p-6'>
         <Outlet />
       </main>
       <TanStackDevtools
