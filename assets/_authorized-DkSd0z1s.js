@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DUAcabCT.js";import{E as t}from"./index-BLV2gfae.js";var n=e();function r(){return(0,n.jsx)(`div`,{children:(0,n.jsx)(t,{})})}export{r as component};
