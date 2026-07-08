@@ -1,9 +1,11 @@
 import { Bar, BarChart } from "recharts"
 
+import { Badge } from "@/components/ui/badge"
 import {
     Card,
     CardContent,
     CardDescription,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
@@ -11,56 +13,59 @@ import {
     ChartContainer,
     type ChartConfig
 } from "@/components/ui/chart"
-
-export const description = "A stacked bar chart with a legend"
-export const iframeHeight = "600px"
-export const containerClassName =
-    "[&>div]:w-full [&>div]:max-w-md flex items-center justify-center min-h-svh"
-
-const chartData = [
-    { date: "2024-07-15", running: 50, swimming: 100 },
-    { date: "2024-07-16", running: 60, swimming: 100 },
-    { date: "2024-07-17", running: 10, swimming: 100 },
-    { date: "2024-07-18", running: 50, swimming: 100 },
-    { date: "2024-07-19", running: 80, swimming: 100 },
-    { date: "2024-07-20", running: 20, swimming: 100 },
-]
+import type { ITotalTestedDrugs } from "@/types/dashboard"
 
 const chartConfig = {
-    running: {
-        label: "Running",
-        color: "var(--chart-1)",
-    },
-    swimming: {
-        label: "Swimming",
-        color: "var(--chart-2)",
+    day: {
+        label: "day",
+        color: "sky-100",
     },
 } satisfies ChartConfig
 
-export default function TestedDrugsChart() {
+interface TestedDrugsChartProps {
+    data: ITotalTestedDrugs
+}
+
+export default function TestedDrugsChart({ data }: TestedDrugsChartProps) {
     return (
-        <Card>
+        <Card className="flex flex-col gap-0 justify-between">
             <CardHeader>
-                <CardTitle>Tooltip - Line Indicator</CardTitle>
-                <CardDescription>Tooltip with line indicator.</CardDescription>
+                <CardTitle className="flex justify-between gap-1">
+                    {data.title}
+                    <Badge variant={'percentage'}>{data.changePercentage}%</Badge>
+                    <div>{data.totalValue.toString().replace(/(?=\d{3}$)/g, ',')}</div>
+                </CardTitle>
+                <CardDescription>{data.period}</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">
                 <ChartContainer config={chartConfig} className="w-25.5 h-18.75">
                     <BarChart
                         accessibilityLayer
-                        data={chartData}
+                        data={data.data}
                     >
                         <Bar
-                            dataKey="running"
+                            dataKey="value"
                             stackId="a"
-                            fill="var(--color-running)"
+                            fill="var(--color-primary)"
                             radius={4}
-                            background={true}
+                            background={{ fill: 'var(--color-chart-bg)', radius: 4 }}
                             barSize={4}
                         />
                     </BarChart>
                 </ChartContainer>
             </CardContent>
+            <CardFooter className="flex flex-col gap-1.5">
+                <div className="w-full flex gap-1 justify-between items-center">
+                    <div className="w-4.5 h-2.25 bg-primary rounded-sm"></div>
+                    <div className="w-full">{data.metrics[0].label}</div>
+                    {data.metrics[0].percentage}%
+                </div>
+                <div className="w-full flex gap-1 justify-between items-center">
+                    <div className="w-4.5 h-2.25 bg-chart-bg rounded-sm"></div>
+                    <div className="w-full">{data.metrics[1].label}</div>
+                    {data.metrics[1].percentage}%
+                </div>
+            </CardFooter>
         </Card>
     )
 }

@@ -1,0 +1,59 @@
+{
+  "totalTestedDrugs": {
+    "title": "Total tested drugs",
+    "period": "Last 7 days",
+    "changePercentage": -6.8,
+    "totalValue": 16247,
+    "metrics": [
+      { "label": "Completed", "percentage": 52 },
+      { "label": "Awaiting results", "percentage": 48 }
+    ],
+    "data": [
+      { "day": "Day 1", "value": 55 },
+      { "day": "Day 2", "value": 55 },
+      { "day": "Day 3", "value": 90 },
+      { "day": "Day 4", "value": 73 },
+      { "day": "Day 5", "value": 38 },
+      { "day": "Day 6", "value": 43 },
+      { "day": "Day 7", "value": 60 },
+      { "day": "Day 8", "value": 77 }
+    ]
+  },
+  "drugApprovalRates": {
+    "title": "Drug approval rates",
+    "period": "Last 7 days",
+    "changePercentage": 26.5,
+    "totalValue": 356,
+    "timeRange": {
+      "start": "01 May",
+      "end": "07 May"
+    },
+    "data": [
+      { "day": "01 May", "value": 38, "previousValue": 30 },
+      { "day": "02 May", "value": 31, "previousValue": 23 },
+      { "day": "03 May", "value": 46, "previousValue": 53 },
+      { "day": "04 May", "value": 23, "previousValue": 38 },
+      { "day": "05 May", "value": 81, "previousValue": 45 },
+      { "day": "06 May", "value": 68, "previousValue": 33 },
+      { "day": "07 May", "value": 95, "previousValue": 45 }
+    ]
+  },
+  "testingProcess": {
+    "title": "Testing process",
+    "period": "Last 7 days",
+    "currentOverallPercentage": 72,
+    "metrics": [
+      { "label": "Preclinical testing", "percentage": 72 },
+      { "label": "Clinical trials", "percentage": 18 },
+      { "label": "Regulatory approval", "percentage": 10 }
+    ]
+  },
+  "numberOfPeopleTested": {
+    "title": "Number of people tested",
+    "period": "Last 7 days",
+    "metrics": [
+      { "label": "Tested", "percentage": 70 },
+      { "label": "Non-tested", "percentage": 30 }
+    ]
+  }
+}

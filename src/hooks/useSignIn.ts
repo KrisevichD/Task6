@@ -1,4 +1,4 @@
-import api from "@/app/api/auth";
+import api from "@/app/api/api";
 import type { AuthResponse, LoginCredentials, User } from "@/types/authentication";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useSearch } from "@tanstack/react-router";

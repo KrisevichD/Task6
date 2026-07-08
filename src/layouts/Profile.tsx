@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import useAuth from "@/hooks/useSignOut";
 import { useRouteContext } from "@tanstack/react-router";
 
@@ -17,6 +18,7 @@ const Profile = () => {
         <div className="flex justify-center">
             <Card className="w-full max-w-lg">
                 <img src={userData.image} alt="" />
+                <Separator />
                 <CardHeader>
                     <CardTitle>
                         {userData.firstName + " " + userData.lastName}
@@ -25,9 +27,11 @@ const Profile = () => {
                         {userData.email}
                     </CardDescription>
                 </CardHeader>
+                <Separator />
                 <CardContent>
                     {userData.gender}
                 </CardContent>
+                <Separator />
                 <CardFooter>
                     <Button
                         variant={'destructive'}

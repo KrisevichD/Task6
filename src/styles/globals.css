@@ -50,6 +50,12 @@
     --color-heading: var(--heading);
     --color-theme-bg: var(--theme-bg);
     --color-theme-icon: var(--theme-icon);
+    --color-success: var(--success);
+    --color-success-background: var(--success-background);
+    --color-failure: var(--failure);
+    --color-failure-background: var(--failure-background);
+    --color-chart-bg: var(--chart-bg);
+    --color-chart-2: var(--chart-2);
 }
 
 :root {
@@ -59,10 +65,10 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
+    --primary: #3874FF;
     --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.205 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
     --accent: oklch(0.97 0 0);
@@ -89,6 +95,12 @@
     --heading: #141828;
     --theme-bg: #FFF3E2;
     --theme-icon: #EB9845;
+    --success: rgba(37, 176, 3, 1);
+    --success-background: rgba(37, 176, 3, 0.1);
+    --failure: rgba(237, 32, 0, 1);
+    --failure-background: rgba(237, 32, 0, 0.1);
+    --chart-bg: #E5EDFF;
+    --chart-2: #0080c7;
 }
 
 .dark {
@@ -127,6 +139,9 @@
     --heading: var(--color-foreground);
     --theme-bg: rgb(53, 53, 53);
     --theme-icon: #fdfdfc;
+    
+    --chart-bg: #818181;
+    --chart-2: #8ca2ad;
 }
 
 @layer base {
@@ -141,6 +156,9 @@
     }
   h1 {
     @apply text-2xl font-semibold text-heading
+  }
+  h2 {
+    @apply text-xl font-semibold text-heading
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {

@@ -1,4 +1,6 @@
 import type { AuthResponse, LoginCredentials, SessionInfo, User } from "@/types/authentication";
+import type { IDashboardResponce } from "@/types/dashboard";
+import type { ITableDataResponse } from "@/types/tables";
 import axios from "axios";
 
 async function getMe(token: string): Promise<User> {
@@ -45,10 +47,28 @@ async function signIn(credentials: LoginCredentials): Promise<AuthResponse> {
     return response.data;
 }
 
+async function getTableData(): Promise<ITableDataResponse> {
+    const response = await axios.get<ITableDataResponse>(
+        'https://dummyjson.com/c/566c-590a-4593-87ed'
+    )
+    console.log(JSON.stringify(response.data))
+    return response.data;
+}
+
+async function getDashboardData(): Promise<IDashboardResponce> {
+    const response = await axios.get<IDashboardResponce>(
+        'https://dummyjson.com/c/f5ea-9bc2-4af2-bf13'
+    )
+    console.log(response)
+    return response.data;
+}
+
 const api = {
     signIn,
     refresh,
-    getMe
+    getMe,
+    getTableData,
+    getDashboardData
 }
 
 export default api;

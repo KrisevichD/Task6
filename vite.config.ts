@@ -1,11 +1,12 @@
-import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
+import { defineConfig } from 'vite'
 
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
-import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import viteReact from '@vitejs/plugin-react'
 import path from 'path'
+import svgr from 'vite-plugin-svgr'
 
 const config = defineConfig({
   resolve: {
@@ -18,6 +19,7 @@ const config = defineConfig({
     tailwindcss(),
     tanstackRouter({ target: 'react', autoCodeSplitting: true }),
     viteReact(),
+    svgr(),
   ],
 })
 

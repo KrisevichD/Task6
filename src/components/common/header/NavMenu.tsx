@@ -17,19 +17,21 @@ const NavMenu = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-full">
                         <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
-                            <DropdownMenuItem asChild>
-                                <Link to="/">Home</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to="/dashboard">Tables</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to="/tables">Process</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to="/">Documentation</Link>
-                            </DropdownMenuItem>
+                        <DropdownMenuGroup asChild>
+                            <nav>
+                                <DropdownMenuItem asChild>
+                                    <Link to="/">Home</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link to="/dashboard">Tables</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link to="/tables">Process</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link to="/documentation">Documentation</Link>
+                                </DropdownMenuItem>
+                            </nav>
                         </DropdownMenuGroup>
                     </DropdownMenuContent>
                 </DropdownMenu>
@@ -38,7 +40,7 @@ const NavMenu = () => {
                 <Link to="/">Home</Link>
                 <Link to="/dashboard">Tables</Link>
                 <Link to="/tables">Process</Link>
-                <Link to="/">Documentation</Link>
+                <Link to="/documentation">Documentation</Link>
             </nav>
         </>
     );
