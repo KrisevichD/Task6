@@ -31,7 +31,7 @@ export default function useSignIn() {
             navigate({ to: redirectTo })
         },
         onError: (error) => {
-            return 'Invalid data'
+            return error.message
         },
         retry: false,
     })
