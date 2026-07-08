@@ -12,8 +12,6 @@ const Profile = () => {
 
     if (!userData) return <>no info</>
 
-    console.log(userData)
-
     return (
         <div className="flex justify-center">
             <Card className="w-full max-w-lg">

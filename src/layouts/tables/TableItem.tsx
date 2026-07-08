@@ -36,7 +36,7 @@ const TableItem = ({ data }: TableItemProps) => {
                     <div className={`h-1 bg-success`} style={{ width: `${Math.floor(data.processCurrent / data.processAmount * 100)}%` }}></div>
                 </div>
             </TableCell>
-            <TableCell className='w-42.5'>{'status'}
+            <TableCell className='w-42.5'>
                 <div className='flex w-28 h-1 gap-1'>
                     <div className='h-1 bg-sky-500' style={{ width: `${data.status[0]}%` }}></div>
                     <div className='h-1 bg-success' style={{ width: `${data.status[1]}%` }}></div>

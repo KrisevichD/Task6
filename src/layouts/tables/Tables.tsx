@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import TableItem from "./tables/TableItem";
+import TableItem from "./TableItem";
 
 
 const Tables = () => {

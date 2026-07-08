@@ -13,8 +13,6 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   beforeLoad: async ({ context }) => {
     const accessToken = await context.queryClient.fetchQuery(getRefreshOptions());
 
-    console.log('access', accessToken)
-
     if (!accessToken) return {
       accessToken: null,
       isAuthenticated: false,

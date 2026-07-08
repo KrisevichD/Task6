@@ -11,8 +11,9 @@ const Header = () => {
             <NavMenu />
             <div className="flex gap-3 items-center">
                 <ThemeButton />
-                <Button variant={'ghost'} size={'icon-md'}>
+                <Button variant={'ghost'} size={'icon-md'} onClick={() => alert('no notifications yet!')}>
                     <Icon icon={'streamline:interface-alert-alarm-bell-2-alert-bell-ring-notification-alarm'} />
+                    <span className="sr-only">notifications</span>
                 </Button>
                 <ProfileButton />
             </div>

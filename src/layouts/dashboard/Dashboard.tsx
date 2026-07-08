@@ -1,11 +1,11 @@
 import { getDashboardDataOptions } from "@/app/api/queries";
 import Title from "@/components/common/Title";
 import { useQuery } from "@tanstack/react-query";
-import DrugApprovalChart from "./dashboard/DrugApprovalChart";
-import MainChart from "./dashboard/MainChart";
-import NumberOfPeopleChart from "./dashboard/NumberOfPeopleChart";
-import TestedDrugsChart from "./dashboard/TestedDrugsChart";
-import TestingProcessChart from "./dashboard/TestingProcessChart";
+import DrugApprovalChart from "./DrugApprovalChart";
+import MainChart from "./MainChart";
+import NumberOfPeopleChart from "./NumberOfPeopleChart";
+import TestedDrugsChart from "./TestedDrugsChart";
+import TestingProcessChart from "./TestingProcessChart";
 
 
 const Dashboard = () => {

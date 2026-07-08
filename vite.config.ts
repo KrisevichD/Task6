@@ -14,6 +14,7 @@ const config = defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: 'https://krisevichd.github.io/Task6',
   plugins: [
     devtools(),
     tailwindcss(),

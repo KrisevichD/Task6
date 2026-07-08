@@ -9,6 +9,7 @@ import {
     ChartTooltipContent,
     type ChartConfig,
 } from "@/components/ui/chart"
+import { Separator } from "@/components/ui/separator"
 import MainData from "./MainData"
 
 export const description = "A multiple line chart"
@@ -63,6 +64,7 @@ export default function MainChart() {
     return (
         <Card className="bg-transparent border-0">
             <MainData />
+            <Separator />
             <CardHeader>
                 <CardTitle>
                     Total tests
