@@ -1,14 +1,15 @@
 
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_authorized')({
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async ({ context, location }) => {
     const isAuthenticated = context.isAuthenticated;
 
     if (!isAuthenticated) {
+      const cleanPath = location.pathname.replace(/^\/Task6/, '') || '/'
       throw redirect({
         to: '/login',
-        search: { redirect: window.location.pathname },
+        search: { redirect: cleanPath },
       })
     }
   },
@@ -16,7 +17,7 @@ export const Route = createFileRoute('/_authorized')({
 })
 
 function RouteComponent() {
-  
+
   return (
     <div>
       <Outlet />
