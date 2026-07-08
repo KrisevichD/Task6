@@ -1,5 +1,5 @@
 
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_authorized')({
   beforeLoad: async ({ context, location }) => {
@@ -12,15 +12,7 @@ export const Route = createFileRoute('/_authorized')({
         search: { redirect: cleanPath },
       })
     }
-  },
-  component: RouteComponent,
+  }
 })
 
-function RouteComponent() {
 
-  return (
-    <div>
-      <Outlet />
-    </div>
-  )
-}

@@ -10,6 +10,7 @@ import TableItem from "./TableItem";
 
 const Tables = () => {
     const { data, isLoading } = useQuery(getTableDataOptions());
+    console.log(data)
     const maxPage = data ? Math.floor(data?.medications.length / 9) : 0;
     const [currentPage, setCurrentPage] = useState<number>(0);
 

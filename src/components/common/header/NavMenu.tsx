@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Icon } from "@iconify/react";
 import { Link } from "@tanstack/react-router";
 
@@ -16,7 +16,6 @@ const NavMenu = () => {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-full">
-                        <DropdownMenuSeparator />
                         <DropdownMenuGroup asChild>
                             <nav>
                                 <DropdownMenuItem asChild>

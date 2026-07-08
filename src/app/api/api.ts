@@ -47,9 +47,14 @@ async function signIn(credentials: LoginCredentials): Promise<AuthResponse> {
 }
 
 async function getTableData(): Promise<ITableDataResponse> {
-    const response = await axios.get<ITableDataResponse>(
-        'https://dummyjson.com/c/566c-590a-4593-87ed'
-    )
+    // const response = await axios.get<ITableDataResponse>(
+    //     'https://dummyjson.com/c/566c-590a-4593-87ed'
+    // )
+    // return response.data;
+    const jsonUrl = `${import.meta.env.BASE_URL}/table.json`;
+
+    const response = await axios.get<ITableDataResponse>(jsonUrl);
+    console.log(response)
     return response.data;
 }
 
