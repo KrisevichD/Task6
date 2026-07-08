@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DUAcabCT.js";import{T as t}from"./index-Mmubv4TM.js";var n=e();function r(){return(0,n.jsx)(`div`,{children:(0,n.jsx)(t,{})})}export{r as component};
