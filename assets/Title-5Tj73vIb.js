@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DUAcabCT.js";var t=e(),n=({title:e,subtitle:n})=>(0,t.jsxs)(`div`,{className:`pt-2 pb-5.25`,children:[(0,t.jsx)(`h1`,{children:e}),n&&(0,t.jsx)(`h2`,{className:`mt-2 text-sm text-foreground font-medium`,children:n})]});export{n as t};

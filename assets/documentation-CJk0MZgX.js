@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DUAcabCT.js";import{t}from"./Title-5Tj73vIb.js";var n=e();function r(){return(0,n.jsxs)(`div`,{children:[(0,n.jsx)(t,{title:`Documentation`}),(0,n.jsx)(`p`,{children:`This App is created by Denis Krysevich.`}),(0,n.jsx)(`p`,{children:`Stack: TypeScript, React, Vite, Tanstack Router/Query, Tailwind, shadcn.`})]})}export{r as component};
